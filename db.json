@@ -1,0 +1,19 @@
+{
+  "productos": [
+    {
+      "nombre": " Xbox",
+      "precio": 1520,
+      "id": 1
+    },
+    {
+      "nombre": " Transporte",
+      "precio": 1250,
+      "id": 2
+    },
+    {
+      "nombre": "Play 5",
+      "precio": 1050,
+      "id": 3
+    }
+  ]
+}
