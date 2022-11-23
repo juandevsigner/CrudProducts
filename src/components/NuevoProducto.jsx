@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { mostrarAlerta, ocultarAlerta } from "../actions/alertaActions";
 import { crearNuevoProductoAction } from "../actions/productoActions";
 
 export const NuevoProducto = () => {
@@ -13,17 +14,19 @@ export const NuevoProducto = () => {
     dispatch(crearNuevoProductoAction(producto));
 
   const { loading, error } = useSelector(state => state.productos);
+  const { alerta } = useSelector(state => state.alertas);
 
   const handleSubmit = async e => {
     e.preventDefault();
     if ([nombre, precio].includes("")) {
-      console.log("ahorita no mi rey");
+      dispatch(mostrarAlerta("Todos los campos son obligatorios"));
       return;
     }
     await agregarProductos({ nombre, precio });
     setNombre("");
     setPrecio("");
     navigate("/");
+    dispatch(ocultarAlerta());
   };
 
   return (
@@ -35,6 +38,11 @@ export const NuevoProducto = () => {
               NuevoProductos{" "}
             </h2>
             <form onSubmit={handleSubmit}>
+              {alerta !== null ? (
+                <p className="text-center text-danger text-uppercase">
+                  {alerta}
+                </p>
+              ) : null}
               <div className="form-group">
                 <label>Nombre Producto</label>
                 <input

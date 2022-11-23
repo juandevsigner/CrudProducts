@@ -1,10 +1,14 @@
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { borrarProducto } from "../actions/productoActions";
+import { useNavigate } from "react-router-dom";
+import {
+  borrarProducto,
+  obtenerProductoEditar,
+} from "../actions/productoActions";
 import Swal from "sweetalert2";
 
 export const Producto = ({ producto }) => {
   const { id, nombre, precio } = producto;
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleEliminarConfirm = id => {
@@ -28,6 +32,11 @@ export const Producto = ({ producto }) => {
     });
   };
 
+  const redirecionarEdicion = id => {
+    dispatch(obtenerProductoEditar(producto));
+    navigate(`/productos/editar/${id}`);
+  };
+
   return (
     <tr>
       <td>{nombre}</td>
@@ -35,9 +44,13 @@ export const Producto = ({ producto }) => {
         <span className="font-weight-bold">$ {precio}</span>
       </td>
       <td className="acciones">
-        <Link to={`/productos/editar/${id}`} className="btn btn-primary mr-2">
+        <button
+          type="button"
+          onClick={() => redirecionarEdicion(id)}
+          className="btn btn-primary mr-2"
+        >
           Editar
-        </Link>
+        </button>
         <button
           onClick={() => handleEliminarConfirm(id)}
           type="button"

@@ -1,19 +1,29 @@
 {
   "productos": [
     {
-      "nombre": " Xbox",
-      "precio": 1520,
+      "nombre": " Xbox One Series X",
+      "precio": "1750",
       "id": 1
     },
     {
       "nombre": " Transporte",
-      "precio": 1250,
+      "precio": "500",
       "id": 2
     },
     {
       "nombre": "Play 5",
       "precio": 1050,
       "id": 3
+    },
+    {
+      "nombre": "Nintendo Oled",
+      "precio": "1750",
+      "id": 4
+    },
+    {
+      "nombre": "Tenis Vans",
+      "precio": 1250,
+      "id": 5
     }
   ]
 }
